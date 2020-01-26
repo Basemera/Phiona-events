@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -6,6 +7,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
 </head>
+
 <body>
     <?php
     session_start();
@@ -25,8 +27,10 @@
         <a class="navbar-brand" href="#">Events</a>
         <div>
             <div class="navbar-nav">
-                <a href="create.php">Create an event <span class="sr-only">(current)</span></a>
-                <a href="index.php">View all events</a>
+                <a href="create.php">Create an event <span class="sr-only">(current)</span></a><br>
+            </div>
+            <div class="navbar-nav">
+                <a href="index.php">View all events</a><br>
             </div>
         </div>
     </nav>
@@ -34,4 +38,5 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+
 </html>

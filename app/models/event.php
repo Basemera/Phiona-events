@@ -1,8 +1,6 @@
 <?php
 
-// echo "Hwllo world";
-
-require_once('../../config.php');
+require '../../database.php';
 
 class Event {
     public $event_name;
@@ -11,62 +9,38 @@ class Event {
     public function __construct() {
     }
 
-    private function connection() {
-        $connection = new PDOConfig();
-        if($connection === false){
-            echo "ERROR: Could not connect. " . mysqli_connect_error();
-        }
-        return $connection;
-    }
-
     public function addEvent($event_name, $description) {
         $event_name = filter_var($event_name, FILTER_SANITIZE_STRING);
         $description = filter_var($description, FILTER_SANITIZE_STRING);
 
-        $sql = "INSERT INTO events(event_name, description) VALUES (?, ?)";
-        try {
-            $connection = $this->connection();
-            $statement = $connection->prepare($sql);
-
-            $statement->bindParam(1, $event_name, PDO::PARAM_STR);
-            $statement->bindParam(2, $description, PDO::PARAM_STR);
-
-            $statement->execute();
-            $connection = null;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        $db = new DatabaseTranscations();
+        $inserted = $db->insert($event_name, $description);
+        if ($inserted) {
+            return "Successfully inserted";
+        } else {
+            return "Something went wrong insertion didnot happen";
         }
     }
 
     public function viewEvents() {
-        $sql =  "SELECT * FROM events";
-        try {
-            $connection = $this->connection();
-            $statement = $connection->query($sql);
-            $result = $statement->fetchAll();
-            $connection = null;
+        $db = new DatabaseTranscations();
+        $result = $db->select();
+        if ($result) {
             return $result;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        } else {
+            return "No results returned";
         }
     }
 
     public function viewEvent($id) {
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
-        $sql = "SELECT * FROM events WHERE id = :id";
-
-        try {
-            $connection = $this->connection();
-            $statement = $connection->prepare($sql);
-            $statement->bindValue(':id', $id);
-            $statement->execute();
-            $result = $statement->fetch(PDO::FETCH_ASSOC);
-            $connection = null;
-
+        $db = new DatabaseTranscations();
+        $result = $db->select($id);
+        if ($result) {
             return $result;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        } else {
+            return "No results returned";
         }
     }
 
@@ -75,40 +49,25 @@ class Event {
         $description = filter_var($description, FILTER_SANITIZE_STRING);
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
-        $sql = "UPDATE events set event_name = ?, description = ? WHERE id = ?";
-        try {
-            $connection = $this->connection();
-            $statement = $connection->prepare($sql);
-            $statement->bindParam(1, $event_name, PDO::PARAM_STR);
-            $statement->bindParam(2, $description, PDO::PARAM_STR);
-            $statement->bindParam(3, $id, PDO::PARAM_INT);
-            $statement->execute();
-            $connection = null;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        $db = new DatabaseTranscations();
+        $result = $db->update($event_name, $description, $id);
+        if ($result) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     public function deleteEvent($id) {
         $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
-
-        $sql = "DELETE FROM events WHERE id = ?";
-        try {
-            $connection = $this->connection();
-            $statement = $connection->prepare($sql);
-            $statement->bindParam(1, $id, PDO::PARAM_INT);
-            $statement->execute();
-            $connection = null;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
+        $db = new DatabaseTranscations();
+        $result = $db->delete($id);
+        if ($result) {
+            return "deleted";
+        } else {
+            return "Something happened event not deleted";
         }
     }
 
 }
-
-// $s = new Event();
-// $s->addEvent('Burning man', 'funtime');
-// $s->viewEvents();
-// var_dump($s);
-
 ?>

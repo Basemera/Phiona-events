@@ -8,7 +8,6 @@ class PDOConfig extends PDO {
     private $pass;
     private $port;
     private $db;
-
    
     public function __construct(){
         $this->engine = 'mysql';
@@ -18,11 +17,7 @@ class PDOConfig extends PDO {
         $this->pass = 'root';
         $this->port = '8889';
         $dsn = $this->engine.':dbname='.$this->database.';host='.$this->host.';port='.$this->port;
-        // var_dump($dsn);die();
-        // $dsn = 'mysql:dbname=testdb;host=127.0.0.1'
-        // var_dump($dsn);die();
         parent::__construct( $dsn, $this->user, $this->pass );
     }
 }
-
 ?>

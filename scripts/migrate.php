@@ -1,5 +1,5 @@
 <?php
-require __DIR__."/../database/migrations.php";
+require __DIR__."/../database/hash_migrations.php";
 require __DIR__."../../migrations/2020_01_28_1580251805_create_venues_table.php";
 require __DIR__."../../migrations/2020_01_29_1580256901_create_books_table.php";
 require __DIR__."../../migrations/2020_01_28_1580250049_create_users_table.php";

@@ -1,6 +1,6 @@
 <?php
-$opt = 't:';
 
+$opt = 't:';
 $options = getopt($opt);
 if (!$options) {
     echo "Migrations not created please provide a table name";
@@ -62,6 +62,6 @@ if (!$options) {
             ?>
         "
     ;
-        file_put_contents(__DIR__."/../migrations"."/".$file_name, $data);
+    file_put_contents(__DIR__."/../migrations"."/".$file_name, $data);
 }
 ?>

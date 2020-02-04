@@ -10,25 +10,31 @@ require "app.php"; ?>
         echo "Something went wrong!";
         exit;
     } ?>
-    <h1>Showing details for <?php echo $result['event_name']; ?> </h1>
-    <div class="jumbotron text-center">
-        <p>
-            <strong>Event:</strong> <?php echo $result['event_name']; ?><br>
-
-            <strong>Description:</strong> <?php echo $result['description']; ?><br>
-        </p>
-        <button class="btn btn-primary" onclick="window.location.href = 'edit.php?id=<?php echo $result['id']; ?>'">Edit</button>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Delete
-        </button>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                Showing details for <?php echo $result['event_name']; ?></h5>
+            <div class="jumbotron text-center">
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <strong>Event:</strong> <?php echo $result['event_name']; ?><br>
+                </h6>
+                <p class="card-text">
+                    <strong>Description:</strong> <?php echo $result['description']; ?><br>
+                </p>
+                <button class="card-link btn btn-primary" onclick="window.location.href = 'edit.php?id=<?php echo $result['id']; ?>'">Edit</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="card-link btn btn-primary" data-toggle="modal" data-target="#deleteEvent">
+                    Delete
+                </button>
+            </div>
+        </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="deleteEventTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Delete event</h5>
+                    <h5 class="modal-title" id="deleteEventTitle">Delete event</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -43,5 +49,4 @@ require "app.php"; ?>
             </div>
         </div>
     </div>
-    
 </body>

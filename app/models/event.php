@@ -68,6 +68,5 @@ class Event {
             return "Something happened event not deleted";
         }
     }
-
 }
 ?>

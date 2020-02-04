@@ -1,7 +1,7 @@
 <?php
     require_once('../../config.php');
 
-    class DatabaseTranscations {
+    class DatabaseTranscations extends PDOStatement {
         private $connection;
 
         public function __construct()
